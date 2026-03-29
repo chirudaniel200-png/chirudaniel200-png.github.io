@@ -153,9 +153,13 @@
       font-size: 1.5rem;
       font-weight: 700;
       letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .nav-logo span { color: var(--gold); }
+    .nav-logo span { color: var(--text); }
+    .nav-logo span strong { color: var(--gold); }
 
     .nav-links {
       display: flex;
@@ -1705,7 +1709,8 @@
   <!-- ══ NAVBAR ══ -->
   <nav class="navbar" id="navbar" role="navigation" aria-label="Navigare principală">
     <a href="#acasa" class="nav-logo" aria-label="Oaia Pierdută — pagina principală">
-      <img src="logo_clean.png" alt="Oaia Pierdută" style="height:52px;width:auto;display:block;" />
+      <img src="logo_clean.png" alt="Oaia Pierdută" style="height:80px;width:auto;display:block;" />
+      <span>Oaia <strong>Pierdută</strong></span>
     </a>
     <ul class="nav-links" role="list">
       <li><a href="#acasa">Acasă</a></li>
