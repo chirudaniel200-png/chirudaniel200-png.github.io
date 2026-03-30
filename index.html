@@ -573,6 +573,186 @@
     .services-cta { text-align: center; }
 
     /* ══════════════════════════════════════════
+       PRICING CARDS
+    ══════════════════════════════════════════ */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .pricing-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 36px 28px 32px;
+      transform: rotate(var(--rotate, 0deg));
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.35s ease,
+                  border-color 0.35s ease;
+    }
+
+    .pricing-card:hover {
+      transform: rotate(0deg) translateY(-6px);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.12), 0 4px 12px rgba(245,168,0,0.12);
+      border-color: var(--gold);
+    }
+
+    .pricing-card--popular {
+      background: #111;
+      border-color: var(--gold);
+      color: #F8F6F1;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.25), 0 4px 16px rgba(245,168,0,0.2);
+    }
+
+    .pricing-card--popular:hover {
+      box-shadow: 0 24px 60px rgba(0,0,0,0.3), 0 6px 20px rgba(245,168,0,0.3);
+      border-color: var(--gold-light);
+    }
+
+    .pricing-popular-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: #0A0A0A;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .pricing-card-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .pricing-icon {
+      width: 44px;
+      height: 44px;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .pricing-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .pricing-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .pricing-card--popular .pricing-name { color: #F8F6F1; }
+
+    .pricing-from {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      margin-bottom: 24px;
+    }
+
+    .pricing-card--popular .pricing-from { color: rgba(248,246,241,0.6); }
+
+    .pricing-from span {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: -0.02em;
+    }
+
+    .pricing-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .pricing-card--popular .pricing-list { border-top-color: rgba(248,246,241,0.15); }
+
+    .pricing-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+    }
+
+    .pricing-check {
+      color: var(--gold);
+      font-size: 0.55rem;
+      flex-shrink: 0;
+    }
+
+    .pricing-item-name {
+      flex: 1;
+      color: var(--text-muted);
+    }
+
+    .pricing-card--popular .pricing-item-name { color: rgba(248,246,241,0.75); }
+
+    .pricing-item-price {
+      font-weight: 600;
+      color: var(--text);
+      font-size: 0.85rem;
+    }
+
+    .pricing-card--popular .pricing-item-price { color: #F8F6F1; }
+
+    .pricing-btn {
+      display: block;
+      width: 100%;
+      padding: 13px 20px;
+      background: transparent;
+      color: var(--text);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: center;
+      border-radius: var(--radius);
+      border: 1.5px solid rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+    }
+
+    .pricing-btn:hover {
+      background: var(--gold-dim);
+      border-color: var(--gold);
+      color: var(--text);
+    }
+
+    .pricing-btn:active { background: rgba(245,168,0,0.25); }
+    .pricing-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+    .pricing-btn--popular {
+      background: var(--gold);
+      color: #0A0A0A;
+      border-color: var(--gold);
+    }
+
+    .pricing-btn--popular:hover {
+      background: var(--gold-light);
+      border-color: var(--gold-light);
+    }
+
+    /* ══════════════════════════════════════════
        AVANTAJE
     ══════════════════════════════════════════ */
     .advantages {
@@ -1420,6 +1600,9 @@
 
       .services-grid { grid-template-columns: repeat(2, 1fr); }
 
+      .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+      .pricing-card { transform: none !important; }
+
       .advantages-grid { grid-template-columns: 1fr 1fr; }
 
       .team-grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
@@ -1743,6 +1926,9 @@
       .service-card:active { transform: scale(0.99); background: var(--bg-elevated); }
       .team-card:active { transform: scale(0.99); }
       .social-link:active { background: var(--gold-dim); border-color: var(--gold); }
+      .pricing-card { transform: none; }
+      .pricing-btn:active { background: var(--gold-dim); border-color: var(--gold); }
+      .pricing-btn--popular:active { background: var(--gold-light); }
     }
   </style>
 </head>
@@ -1920,102 +2106,73 @@
         <div class="divider fade-in fade-in-delay-1" aria-hidden="true"></div>
       </div>
 
-      <div class="services-grid" role="list">
+      <div class="pricing-grid">
 
-        <div class="service-card fade-in" role="listitem">
-          <h3 class="service-name">Clasic Modern</h3>
-          <div class="service-prices">
-            <div class="service-price-row">
-              <span class="price-value">35 lei</span>
+        <!-- Card 1: Tunsori -->
+        <div class="pricing-card fade-in" style="--rotate: -1deg">
+          <div class="pricing-card-inner">
+            <div class="pricing-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"/>
+              </svg>
             </div>
+            <h3 class="pricing-name">Tunsori</h3>
+            <p class="pricing-from">de la <span>15 lei</span></p>
+            <ul class="pricing-list">
+              <li><span class="pricing-check">✦</span><span class="pricing-item-name">Clasic Modern</span><span class="pricing-item-price">35 lei</span></li>
+              <li><span class="pricing-check">✦</span><span class="pricing-item-name">Fade</span><span class="pricing-item-price">40 lei</span></li>
+              <li><span class="pricing-check">✦</span><span class="pricing-item-name">Fade + Shaver</span><span class="pricing-item-price">45 lei</span></li>
+              <li><span class="pricing-check">✦</span><span class="pricing-item-name">Taper Fade</span><span class="pricing-item-price">50 lei</span></li>
+              <li><span class="pricing-check">✦</span><span class="pricing-item-name">Burst Fade</span><span class="pricing-item-price">50 lei</span></li>
+              <li><span class="pricing-check">✦</span><span class="pricing-item-name">Mullet</span><span class="pricing-item-price">50 lei</span></li>
+            </ul>
+            <a href="#programare" class="pricing-btn">Programează-te</a>
           </div>
         </div>
 
-        <div class="service-card fade-in fade-in-delay-1" role="listitem">
-          <h3 class="service-name">Fade</h3>
-          <div class="service-prices">
-            <div class="service-price-row">
-              <span class="price-value">40 lei</span>
+        <!-- Card 2: Tuns + Barbă (Popular) -->
+        <div class="pricing-card pricing-card--popular fade-in fade-in-delay-1" style="--rotate: 1deg">
+          <div class="pricing-popular-badge">Cel mai ales ✦</div>
+          <div class="pricing-card-inner">
+            <div class="pricing-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"/>
+                <path d="M12 6h8M12 18h8"/>
+              </svg>
             </div>
+            <h3 class="pricing-name">Tuns + Barbă</h3>
+            <p class="pricing-from">pachet complet <span>70 lei</span></p>
+            <ul class="pricing-list">
+              <li><span class="pricing-check">✦</span><span class="pricing-item-name">Tunsoare la alegere</span><span class="pricing-item-price">inclus</span></li>
+              <li><span class="pricing-check">✦</span><span class="pricing-item-name">Aranjat barbă</span><span class="pricing-item-price">inclus</span></li>
+              <li><span class="pricing-check">✦</span><span class="pricing-item-name">Finisaj complet</span><span class="pricing-item-price">inclus</span></li>
+            </ul>
+            <a href="#programare" class="pricing-btn pricing-btn--popular">Rezervă pachetul</a>
           </div>
         </div>
 
-        <div class="service-card fade-in" role="listitem">
-          <h3 class="service-name">Fade + Shaver</h3>
-          <div class="service-prices">
-            <div class="service-price-row">
-              <span class="price-value">45 lei</span>
+        <!-- Card 3: Barbă -->
+        <div class="pricing-card fade-in fade-in-delay-2" style="--rotate: -1.5deg">
+          <div class="pricing-card-inner">
+            <div class="pricing-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4l4 4M4 20l4-4M20 4l-4 4M20 20l-4-4M12 12h.01"/>
+                <rect x="8" y="8" width="8" height="8" rx="1"/>
+              </svg>
             </div>
+            <h3 class="pricing-name">Barbă</h3>
+            <p class="pricing-from">de la <span>15 lei</span></p>
+            <ul class="pricing-list">
+              <li><span class="pricing-check">✦</span><span class="pricing-item-name">Tuns Barbă 0</span><span class="pricing-item-price">15 lei</span></li>
+              <li><span class="pricing-check">✦</span><span class="pricing-item-name">Barbă Fade</span><span class="pricing-item-price">20 lei</span></li>
+              <li><span class="pricing-check">✦</span><span class="pricing-item-name">Freestyle Barbă</span><span class="pricing-item-price">25 lei</span></li>
+            </ul>
+            <a href="#programare" class="pricing-btn">Programează-te</a>
           </div>
         </div>
 
-        <div class="service-card fade-in fade-in-delay-1" role="listitem">
-          <h3 class="service-name">Taper Fade</h3>
-          <div class="service-prices">
-            <div class="service-price-row">
-              <span class="price-value">50 lei</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="service-card fade-in" role="listitem">
-          <h3 class="service-name">Burst Fade</h3>
-          <div class="service-prices">
-            <div class="service-price-row">
-              <span class="price-value">50 lei</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="service-card fade-in fade-in-delay-1" role="listitem">
-          <h3 class="service-name">Mullet</h3>
-          <div class="service-prices">
-            <div class="service-price-row">
-              <span class="price-value">50 lei</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="service-card fade-in" role="listitem">
-          <h3 class="service-name">Freestyle Barbă</h3>
-          <div class="service-prices">
-            <div class="service-price-row">
-              <span class="price-value">25 lei</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="service-card fade-in fade-in-delay-1" role="listitem">
-          <h3 class="service-name">Barbă Fade</h3>
-          <div class="service-prices">
-            <div class="service-price-row">
-              <span class="price-value">20 lei</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="service-card fade-in" role="listitem">
-          <h3 class="service-name">Tuns + Barbă</h3>
-          <div class="service-prices">
-            <div class="service-price-row">
-              <span class="price-value">70 lei</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="service-card fade-in fade-in-delay-1" role="listitem">
-          <h3 class="service-name">Tuns Barbă 0</h3>
-          <div class="service-prices">
-            <div class="service-price-row">
-              <span class="price-value">15 lei</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="services-cta fade-in">
-        <a href="#programare" class="btn" aria-label="Programare online">Vreau să mă programez</a>
       </div>
     </div>
   </section>
