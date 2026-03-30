@@ -1061,65 +1061,62 @@
        GALERIE
     ══════════════════════════════════════════ */
     .gallery {
-      background: var(--bg-card);
-      border-top: 1px solid var(--border);
+      background: #0E0E0E;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-bottom: 80px;
     }
 
-    .gallery-header { text-align: center; margin-bottom: 64px; }
+    .gallery .section-subtitle { color: rgba(248,246,241,0.5); }
+    .gallery .section-title { color: #F8F6F1; }
+    .gallery .section-title span { color: var(--gold); }
+    .gallery .divider { background: var(--gold); }
+
+    .gallery-header { text-align: center; margin-bottom: 48px; }
     .gallery-header .divider { margin: 20px auto 0; }
 
-    .gallery-wrapper {
+    .gallery-3d {
+      width: 100%;
+      height: 520px;
       position: relative;
-    }
-
-    .gallery-track {
+      border-radius: 12px;
       overflow: hidden;
     }
 
-    .gallery-slides {
-      display: flex;
-      transition: transform 0.5s ease;
+    #gallery-canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+      cursor: grab;
     }
 
-    .gallery-slide {
-      min-width: calc(100% / 3);
-      padding: 0 8px;
-    }
+    #gallery-canvas:active { cursor: grabbing; }
 
-    .gallery-item {
-      aspect-ratio: 3/4;
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
-      display: flex;
+    .gallery-fallback {
+      display: none;
+      width: 100%;
+      height: 100%;
       align-items: center;
       justify-content: center;
-      position: relative;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
+      background: var(--bg-card);
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 24px;
     }
 
-    .gallery-item::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(212,168,67,0.2) 0%, transparent 60%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
+    .gallery-fallback img {
+      width: calc(33% - 8px);
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
     }
 
-    .gallery-item:hover::before { opacity: 1; }
-
-    .gallery-item:hover .gallery-item-label { color: var(--gold); }
-
-    .gallery-item-label {
+    .gallery-hint {
+      text-align: center;
+      margin-top: 20px;
       font-size: 0.72rem;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--text-muted);
-      position: relative;
-      z-index: 1;
-      transition: color 0.3s ease;
+      color: rgba(248,246,241,0.35);
     }
 
     /* ══════════════════════════════════════════
@@ -1631,7 +1628,7 @@
 
       .team-grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
 
-      .gallery-slide { min-width: 80%; }
+      .gallery-3d { height: 420px; }
 
       .contact-grid { grid-template-columns: 1fr; }
 
@@ -1924,7 +1921,7 @@
       .floating-cta .btn { width: 100%; text-align: center; justify-content: center; display: flex; }
 
       /* Gallery slides wider */
-      .gallery-slide { min-width: 85%; }
+      .gallery-3d { height: 320px; }
 
       /* Team single column with bigger photos */
       .team-photo { aspect-ratio: 3/4; }
@@ -1948,6 +1945,7 @@
       .pricing-btn--popular:active { background: var(--gold-light); }
     }
   </style>
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
 </head>
 <body>
 
@@ -2467,59 +2465,18 @@
         <div class="divider fade-in fade-in-delay-1" aria-hidden="true"></div>
       </div>
 
-      <div class="gallery-wrapper fade-in">
-        <div class="gallery-track" role="region" aria-label="Carousel galerie foto" aria-live="polite">
-          <div class="gallery-slides" id="galSlides">
-            <div class="gallery-slide">
-              <div class="gallery-item" role="img" aria-label="Tuns modern">
-                <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=600&q=80" alt="Tuns modern" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
-              </div>
-            </div>
-            <div class="gallery-slide">
-              <div class="gallery-item" role="img" aria-label="Aranjat barbă">
-                <img src="https://images.unsplash.com/photo-1512864084360-7c0c4d7d3e73?auto=format&fit=crop&w=600&q=80" alt="Aranjat barbă" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
-              </div>
-            </div>
-            <div class="gallery-slide">
-              <div class="gallery-item" role="img" aria-label="Tuns clasic">
-                <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=600&q=80" alt="Tuns clasic" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
-              </div>
-            </div>
-            <div class="gallery-slide">
-              <div class="gallery-item" role="img" aria-label="Stil premium">
-                <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=600&q=80" alt="Stil premium" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
-              </div>
-            </div>
-            <div class="gallery-slide">
-              <div class="gallery-item" role="img" aria-label="Ras royal">
-                <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=600&q=80" alt="Ras royal" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
-              </div>
-            </div>
-            <div class="gallery-slide">
-              <div class="gallery-item" role="img" aria-label="Finisaj impecabil">
-                <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=600&q=80" alt="Finisaj impecabil" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="carousel-controls" aria-label="Controale carousel galerie">
-          <button class="carousel-btn" id="galPrev" aria-label="Foto anterioară">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-              <path d="M13 4l-6 6 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <div class="carousel-dots" id="galDots" role="tablist" aria-label="Navigare galerie">
-            <button class="dot active" aria-label="Foto 1-3" role="tab" aria-selected="true"></button>
-            <button class="dot" aria-label="Foto 4-6" role="tab" aria-selected="false"></button>
-          </div>
-          <button class="carousel-btn" id="galNext" aria-label="Foto următoare">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-              <path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
+      <div class="gallery-3d fade-in" id="gallery-3d">
+        <canvas id="gallery-canvas" aria-label="Galerie foto 3D interactivă"></canvas>
+        <div class="gallery-fallback" id="gallery-fallback" aria-label="Galerie foto">
+          <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=400&q=80" alt="Tuns modern" />
+          <img src="https://images.unsplash.com/photo-1512864084360-7c0c4d7d3e73?auto=format&fit=crop&w=400&q=80" alt="Aranjat barbă" />
+          <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=400&q=80" alt="Tuns clasic" />
+          <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=400&q=80" alt="Stil premium" />
+          <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=400&q=80" alt="Ras royal" />
+          <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=400&q=80" alt="Finisaj impecabil" />
         </div>
       </div>
+      <p class="gallery-hint">Scroll · taste ↑↓ · drag pe touch</p>
     </div>
   </section>
 
@@ -3007,50 +2964,7 @@
 
     // Testimonials: CSS infinite scroll columns (no JS needed)
 
-    // Gallery carousel (3 visible on desktop)
-    function getGalVisible() {
-      if (window.innerWidth <= 768) return 1;
-      return 3;
-    }
-
-    const galSlidesEl = document.getElementById('galSlides');
-    const galDotsEl = document.getElementById('galDots');
-    let galCurrent = 0;
-
-    function galUpdate() {
-      const vis = getGalVisible();
-      const steps = Math.ceil(6 / vis);
-      const slideW = 100 / vis;
-      const pct = galCurrent * vis * slideW;
-      galSlidesEl.style.transform = `translateX(-${pct}%)`;
-      galDotsEl.querySelectorAll('.dot').forEach((d, i) => {
-        const active = i === galCurrent;
-        d.classList.toggle('active', active);
-        d.setAttribute('aria-selected', active);
-      });
-    }
-
-    document.getElementById('galNext').addEventListener('click', () => {
-      const vis = getGalVisible();
-      const steps = Math.ceil(6 / vis);
-      galCurrent = (galCurrent + 1) % steps;
-      galUpdate();
-    });
-
-    document.getElementById('galPrev').addEventListener('click', () => {
-      const vis = getGalVisible();
-      const steps = Math.ceil(6 / vis);
-      galCurrent = (galCurrent - 1 + steps) % steps;
-      galUpdate();
-    });
-
-    galDotsEl.querySelectorAll('.dot').forEach((d, i) => {
-      d.addEventListener('click', () => { galCurrent = i; galUpdate(); });
-    });
-
-    // Recalculate on resize
-    window.addEventListener('resize', galUpdate, { passive: true });
-    galUpdate();
+    // Gallery: 3D WebGL (see module script below)
 
     // ── Booking form: set min date to today ──
     const dateField = document.getElementById('field-date');
@@ -3107,6 +3021,256 @@
         success.scrollIntoView({ behavior: 'smooth', block: 'center' });
       });
     }
+  </script>
+
+  <!-- ══ 3D GALLERY — Three.js module ══ -->
+  <script type="module">
+  import * as THREE from 'three';
+
+  (function initGallery3D() {
+    const canvas = document.getElementById('gallery-canvas');
+    const container = document.getElementById('gallery-3d');
+    const fallback = document.getElementById('gallery-fallback');
+    if (!canvas || !container) return;
+
+    // WebGL check
+    let gl;
+    try { gl = canvas.getContext('webgl2') || canvas.getContext('webgl'); } catch(e) {}
+    if (!gl) {
+      if (fallback) fallback.style.display = 'flex';
+      canvas.style.display = 'none';
+      return;
+    }
+
+    // ── Images ──
+    const IMAGES = [
+      'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1512864084360-7c0c4d7d3e73?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=800&q=80',
+    ];
+
+    const VISIBLE  = 10;
+    const D_RANGE  = 50;
+    const HALF     = D_RANGE / 2;
+    const MAX_H    = 6;
+    const MAX_V    = 3.5;
+    const FADE     = { inS:0.05, inE:0.25, outS:0.40, outE:0.43 };
+    const BLUR     = { inS:0.0,  inE:0.10, outS:0.40, outE:0.43, max:6.0 };
+
+    // ── Scene ──
+    const scene    = new THREE.Scene();
+    const camera   = new THREE.PerspectiveCamera(55, 1, 0.1, 200);
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer.setClearColor(0x000000, 0);
+
+    function resize() {
+      const w = container.clientWidth, h = container.clientHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    }
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+
+    // ── Shaders ──
+    const vert = `
+      uniform float scrollForce;
+      uniform float time;
+      uniform float isHovered;
+      varying vec2 vUv;
+      void main() {
+        vUv = uv;
+        vec3 pos = position;
+        float ci = scrollForce * 0.3;
+        float dist = length(pos.xy);
+        float curve = dist * dist * ci;
+        float r1 = sin(pos.x * 2.0 + scrollForce * 3.0) * 0.02;
+        float r2 = sin(pos.y * 2.5 + scrollForce * 2.0) * 0.015;
+        float cloth = (r1 + r2) * abs(ci) * 2.0;
+        float flag = 0.0;
+        if (isHovered > 0.5) {
+          float damp = smoothstep(-0.5, 0.5, pos.x);
+          flag  = sin(pos.x * 3.0 + time * 8.0) * 0.1 * damp;
+          flag += sin(pos.x * 5.0 + time * 12.0) * 0.03 * damp;
+        }
+        pos.z -= (curve + cloth + flag);
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+      }`;
+
+    const frag = `
+      uniform sampler2D map;
+      uniform float opacity;
+      uniform float blurAmount;
+      uniform float scrollForce;
+      varying vec2 vUv;
+      void main() {
+        vec4 color;
+        if (blurAmount > 0.1) {
+          vec2 ts = vec2(1.0 / 512.0);
+          vec4 acc = vec4(0.0);
+          float tot = 0.0;
+          for (float x = -2.0; x <= 2.0; x += 1.0) {
+            for (float y = -2.0; y <= 2.0; y += 1.0) {
+              float w = 1.0 / (1.0 + length(vec2(x, y)));
+              acc += texture2D(map, vUv + vec2(x,y) * ts * blurAmount) * w;
+              tot += w;
+            }
+          }
+          color = acc / tot;
+        } else {
+          color = texture2D(map, vUv);
+        }
+        color.rgb += vec3(abs(scrollForce) * 0.005);
+        gl_FragColor = vec4(color.rgb, color.a * opacity);
+      }`;
+
+    // ── Spatial positions (golden angle) ──
+    const spatial = Array.from({ length: VISIBLE }, (_, i) => ({
+      x: (Math.sin((i * 2.618) % (Math.PI * 2)) * (i % 3) * 1.2 * MAX_H) / 3,
+      y: (Math.cos((i * 1.618 + Math.PI / 3) % (Math.PI * 2)) * ((i + 1) % 4) * 0.8 * MAX_V) / 4,
+    }));
+
+    // ── Textures ──
+    const loader   = new THREE.TextureLoader();
+    const textures = IMAGES.map(src =>
+      loader.load(src, t => { t.colorSpace = THREE.SRGBColorSpace; })
+    );
+
+    // ── Geometry (shared) ──
+    const geo = new THREE.PlaneGeometry(1, 1, 32, 32);
+
+    function makeMat() {
+      return new THREE.ShaderMaterial({
+        transparent: true,
+        uniforms: {
+          map:         { value: null },
+          opacity:     { value: 1.0 },
+          blurAmount:  { value: 0.0 },
+          scrollForce: { value: 0.0 },
+          time:        { value: 0.0 },
+          isHovered:   { value: 0.0 },
+        },
+        vertexShader: vert,
+        fragmentShader: frag,
+      });
+    }
+
+    // ── Planes ──
+    const planes = Array.from({ length: VISIBLE }, (_, i) => ({
+      z:          ((D_RANGE / VISIBLE) * i) % D_RANGE,
+      imgIdx:     i % IMAGES.length,
+      x:          spatial[i].x,
+      y:          spatial[i].y,
+    }));
+
+    const meshes = planes.map(p => {
+      const m = new THREE.Mesh(geo, makeMat());
+      scene.add(m);
+      return m;
+    });
+
+    // ── Raycaster ──
+    const ray   = new THREE.Raycaster();
+    const mouse = new THREE.Vector2(-9, -9);
+    canvas.addEventListener('mousemove', e => {
+      const r = canvas.getBoundingClientRect();
+      mouse.x =  ((e.clientX - r.left) / r.width)  * 2 - 1;
+      mouse.y = -((e.clientY - r.top)  / r.height) * 2 + 1;
+    });
+    canvas.addEventListener('mouseleave', () => mouse.set(-9, -9));
+
+    // ── Input ──
+    let vel  = 0;
+    let auto = true;
+    let last = Date.now();
+
+    canvas.addEventListener('wheel', e => {
+      e.preventDefault();
+      vel += e.deltaY * 0.01;
+      auto = false; last = Date.now();
+    }, { passive: false });
+
+    let ty = 0;
+    canvas.addEventListener('touchstart', e => { ty = e.touches[0].clientY; auto = false; last = Date.now(); }, { passive: true });
+    canvas.addEventListener('touchmove',  e => {
+      const dy = ty - e.touches[0].clientY;
+      vel += dy * 0.05; ty = e.touches[0].clientY; last = Date.now();
+    }, { passive: true });
+
+    setInterval(() => { if (Date.now() - last > 3000) auto = true; }, 1000);
+
+    // ── Animate ──
+    const clock  = new THREE.Clock();
+    const advance = VISIBLE % IMAGES.length || IMAGES.length;
+
+    function tick() {
+      requestAnimationFrame(tick);
+      const dt   = clock.getDelta();
+      const time = clock.getElapsedTime();
+
+      if (auto) vel += 0.3 * dt;
+      vel *= 0.95;
+
+      // Hover detection
+      ray.setFromCamera(mouse, camera);
+      const hits = new Set(ray.intersectObjects(meshes).map(h => h.object));
+
+      planes.forEach((p, i) => {
+        // Advance z
+        let z = p.z + vel * dt * 10;
+        let wf = 0, wb = 0;
+        if (z >= D_RANGE) { wf = Math.floor(z / D_RANGE); z -= D_RANGE * wf; }
+        else if (z < 0)   { wb = Math.ceil(-z / D_RANGE); z += D_RANGE * wb; }
+        if (wf > 0) p.imgIdx = (p.imgIdx + wf * advance) % IMAGES.length;
+        if (wb > 0) { const s = p.imgIdx - wb * advance; p.imgIdx = ((s % IMAGES.length) + IMAGES.length) % IMAGES.length; }
+        p.z = ((z % D_RANGE) + D_RANGE) % D_RANGE;
+
+        const np = p.z / D_RANGE;
+
+        // Opacity
+        let op = 1;
+        if      (np < FADE.inS)  op = 0;
+        else if (np < FADE.inE)  op = (np - FADE.inS) / (FADE.inE - FADE.inS);
+        else if (np > FADE.outE) op = 0;
+        else if (np > FADE.outS) op = 1 - (np - FADE.outS) / (FADE.outE - FADE.outS);
+        op = Math.max(0, Math.min(1, op));
+
+        // Blur
+        let bl = 0;
+        if      (np < BLUR.inS)  bl = BLUR.max;
+        else if (np < BLUR.inE)  bl = BLUR.max * (1 - (np - BLUR.inS) / (BLUR.inE - BLUR.inS));
+        else if (np > BLUR.outE) bl = BLUR.max;
+        else if (np > BLUR.outS) bl = BLUR.max * (np - BLUR.outS) / (BLUR.outE - BLUR.outS);
+        bl = Math.max(0, Math.min(BLUR.max, bl));
+
+        const mesh = meshes[i];
+        const mat  = mesh.material;
+        const tex  = textures[p.imgIdx];
+
+        // Update texture & scale
+        if (tex && tex.image && mat.uniforms.map.value !== tex) {
+          mat.uniforms.map.value = tex;
+          const asp = tex.image.width / tex.image.height;
+          asp > 1 ? mesh.scale.set(2.8 * asp, 2.8, 1) : mesh.scale.set(2.8, 2.8 / asp, 1);
+        }
+
+        mat.uniforms.opacity.value     = op;
+        mat.uniforms.blurAmount.value  = bl;
+        mat.uniforms.scrollForce.value = vel;
+        mat.uniforms.time.value        = time;
+        mat.uniforms.isHovered.value   = hits.has(mesh) ? 1.0 : 0.0;
+
+        mesh.position.set(p.x, p.y, p.z - HALF);
+      });
+
+      renderer.render(scene, camera);
+    }
+    tick();
+  })();
   </script>
 
 </body>
